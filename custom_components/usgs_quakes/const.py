@@ -1,58 +1,39 @@
-"""Constants for the USGS Quakes integration."""
+"""Constants for USGS Quakes integration."""
+
+from homeassistant.const import UnitOfLength
 
 DOMAIN = "usgs_quakes"
 
-# Feed identifiers (internal)
-VALID_FEED_TYPES = [
-    "past_hour_significant_earthquakes",
-    "past_hour_m45_earthquakes",
-    "past_hour_m25_earthquakes",
-    "past_hour_m10_earthquakes",
-    "past_hour_all_earthquakes",
-    "past_day_significant_earthquakes",
-    "past_day_m45_earthquakes",
-    "past_day_m25_earthquakes",
-    "past_day_m10_earthquakes",
-    "past_day_all_earthquakes",
-    "past_week_significant_earthquakes",
-    "past_week_m45_earthquakes",
-    "past_week_m25_earthquakes",
-    "past_week_m10_earthquakes",
-    "past_week_all_earthquakes",
-    "past_month_significant_earthquakes",
-    "past_month_m45_earthquakes",
-    "past_month_m25_earthquakes",
-    "past_month_m10_earthquakes",
-    "past_month_all_earthquakes",
-]
-
-# Friendly names mapping for UI display
-FEED_FRIENDLY_NAMES = {
-    "past_hour_significant_earthquakes": "Past Hour - Significant",
-    "past_hour_m45_earthquakes": "Past Hour - Magnitude 4.5+",
-    "past_hour_m25_earthquakes": "Past Hour - Magnitude 2.5+",
-    "past_hour_m10_earthquakes": "Past Hour - Magnitude 1.0+",
-    "past_hour_all_earthquakes": "Past Hour - All",
-    "past_day_significant_earthquakes": "Past Day - Significant",
-    "past_day_m45_earthquakes": "Past Day - Magnitude 4.5+",
-    "past_day_m25_earthquakes": "Past Day - Magnitude 2.5+",
-    "past_day_m10_earthquakes": "Past Day - Magnitude 1.0+",
-    "past_day_all_earthquakes": "Past Day - All",
-    "past_week_significant_earthquakes": "Past Week - Significant",
-    "past_week_m45_earthquakes": "Past Week - Magnitude 4.5+",
-    "past_week_m25_earthquakes": "Past Week - Magnitude 2.5+",
-    "past_week_m10_earthquakes": "Past Week - Magnitude 1.0+",
-    "past_week_all_earthquakes": "Past Week - All",
-    "past_month_significant_earthquakes": "Past Month - Significant",
-    "past_month_m45_earthquakes": "Past Month - Magnitude 4.5+",
-    "past_month_m25_earthquakes": "Past Month - Magnitude 2.5+",
-    "past_month_m10_earthquakes": "Past Month - Magnitude 1.0+",
-    "past_month_all_earthquakes": "Past Month - All",
-}
-
-# Reverse lookup: friendly name → internal feed type
-FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_FRIENDLY_NAMES.items()}
-
-# Default configuration values
 DEFAULT_RADIUS_IN_KM = 50.0
 DEFAULT_MINIMUM_MAGNITUDE = 0.0
+DEFAULT_UNIT_OF_MEASUREMENT = UnitOfLength.KILOMETERS
+
+CONF_FEED_TYPE = "feed_type"
+CONF_MINIMUM_MAGNITUDE = "minimum_magnitude"
+
+# Mapping of USGS feed types to friendly names
+FEED_FRIENDLY_NAMES = {
+    "past_hour_significant_earthquakes": "Significant Earthquakes (Past Hour)",
+    "past_hour_m45_earthquakes": "Magnitude ≥4.5 (Past Hour)",
+    "past_hour_m25_earthquakes": "Magnitude ≥2.5 (Past Hour)",
+    "past_hour_m10_earthquakes": "Magnitude ≥1.0 (Past Hour)",
+    "past_hour_all_earthquakes": "All Earthquakes (Past Hour)",
+    "past_day_significant_earthquakes": "Significant Earthquakes (Past Day)",
+    "past_day_m45_earthquakes": "Magnitude ≥4.5 (Past Day)",
+    "past_day_m25_earthquakes": "Magnitude ≥2.5 (Past Day)",
+    "past_day_m10_earthquakes": "Magnitude ≥1.0 (Past Day)",
+    "past_day_all_earthquakes": "All Earthquakes (Past Day)",
+    "past_week_significant_earthquakes": "Significant Earthquakes (Past Week)",
+    "past_week_m45_earthquakes": "Magnitude ≥4.5 (Past Week)",
+    "past_week_m25_earthquakes": "Magnitude ≥2.5 (Past Week)",
+    "past_week_m10_earthquakes": "Magnitude ≥1.0 (Past Week)",
+    "past_week_all_earthquakes": "All Earthquakes (Past Week)",
+    "past_month_significant_earthquakes": "Significant Earthquakes (Past Month)",
+    "past_month_m45_earthquakes": "Magnitude ≥4.5 (Past Month)",
+    "past_month_m25_earthquakes": "Magnitude ≥2.5 (Past Month)",
+    "past_month_m10_earthquakes": "Magnitude ≥1.0 (Past Month)",
+    "past_month_all_earthquakes": "All Earthquakes (Past Month)",
+}
+
+# Reverse mapping for UI input translation
+FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_FRIENDLY_NAMES.items()}
