@@ -1,19 +1,31 @@
 {
-  "title": "USGS Quakes",
   "config": {
     "step": {
       "user": {
-        "title": "Configure USGS Feed",
-        "description": "Set parameters for the USGS Earthquake feed"
+        "title": "Configure USGS Quakes",
+        "description": "Set the parameters to monitor earthquakes.",
+        "data": {
+          "feed_type": "Feed Type",
+          "radius": "Radius (Km)",
+          "minimum_magnitude": "Minimum Magnitude (Mw)",
+          "latitude": "Latitude",
+          "longitude": "Longitude"
+        }
       }
     },
-    "error": {},
-    "abort": {}
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "USGS Quakes Options"
+    "options": {
+      "step": {
+        "init": {
+          "title": "USGS Quakes Options",
+          "description": "Adjust the monitoring parameters.",
+          "data": {
+            "feed_type": "Feed Type",
+            "radius": "Radius (Km)",
+            "minimum_magnitude": "Minimum Magnitude (Mw)",
+            "latitude": "Latitude",
+            "longitude": "Longitude"
+          }
+        }
       }
     }
   }
