@@ -114,11 +114,9 @@ class UsgsQuakesFeedEntityManager:
         await self.async_update()  # Ensure first fetch on init
 
     async def async_update(self) -> None:
-        _LOGGER.debug("USGS Quakes: Ejecutando async_update (manager)")
         await self._feed_manager.update()
-        _LOGGER.debug("Feed entity manager updated. Entradas del feed: %d", len(self._feed_manager.feed_entries))
+        _LOGGER.debug("Feed entity manager updated")
 
-        # Build a list of all current events
         latest_events = []
         for entry in self._feed_manager.feed_entries.values():
             latest_events.append({
@@ -132,14 +130,17 @@ class UsgsQuakesFeedEntityManager:
                 "distance": entry.distance_to_home,
             })
 
-        # Sort events by time (most recent first)
-        latest_events.sort(key=lambda e: e["time"], reverse=True)
+        latest_events.sort(key=lambda e: e["time"])
         self._latest_events = latest_events
 
-        # Share with other platforms (sensor)
+        # ---- FIX para evitar KeyError ----
+        if DOMAIN not in self._hass.data:
+            self._hass.data[DOMAIN] = {}
+        if self._entry_id not in self._hass.data[DOMAIN]:
+            self._hass.data[DOMAIN][self._entry_id] = {}
         self._hass.data[DOMAIN][self._entry_id]["events"] = self._latest_events
+        # ----------------------------------
 
-        # Dispatch update for sensor
         async_dispatcher_send(self._hass, SIGNAL_EVENTS_UPDATED.format(self._entry_id))
 
     def get_entry(self, external_id: str) -> UsgsEarthquakeHazardsProgramFeedEntry | None:
