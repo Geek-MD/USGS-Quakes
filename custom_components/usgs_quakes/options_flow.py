@@ -22,6 +22,9 @@ from typing import Any
 FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_TYPE_FRIENDLY_NAMES.items()}
 FRIENDLY_NAMES = list(FRIENDLY_NAME_TO_FEED_TYPE.keys())
 
+import logging
+_LOGGER = logging.getLogger(__name__)
+_LOGGER.error("USGS Quakes options_flow.py loaded")
 
 class UsgsQuakesOptionsFlowHandler(config_entries.OptionsFlow):
     """Handle USGS Quakes options."""
