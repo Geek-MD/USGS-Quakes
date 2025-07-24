@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import voluptuous as vol
+import logging
 
 from homeassistant import config_entries
 from homeassistant.data_entry_flow import FlowResult
@@ -19,12 +20,12 @@ from .const import (
 
 from typing import Any
 
+_LOGGER = logging.getLogger(__name__)
+_LOGGER.debug("USGS Quakes options_flow.py loaded")  # Puedes dejarlo como debug
+
 FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_TYPE_FRIENDLY_NAMES.items()}
 FRIENDLY_NAMES = list(FRIENDLY_NAME_TO_FEED_TYPE.keys())
 
-import logging
-_LOGGER = logging.getLogger(__name__)
-_LOGGER.error("USGS Quakes options_flow.py loaded")
 
 class UsgsQuakesOptionsFlowHandler(config_entries.OptionsFlow):
     """Handle USGS Quakes options."""
@@ -57,6 +58,7 @@ class UsgsQuakesOptionsFlowHandler(config_entries.OptionsFlow):
                     },
                 )
 
+        # Preselecciona los valores actuales o default
         selected_feed_type = FEED_TYPE_FRIENDLY_NAMES.get(
             data.get(CONF_FEED_TYPE, VALID_FEED_TYPES[0]),
             FEED_TYPE_FRIENDLY_NAMES[VALID_FEED_TYPES[0]],
