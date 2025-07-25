@@ -3,6 +3,7 @@
   "name": "USGS Quakes",
   "codeowners": ["@Geek-MD"],
   "config_flow": true,
+  "options_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/Geek-MD/USGS_Quakes",
   "integration_type": "service",
