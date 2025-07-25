@@ -21,7 +21,7 @@ from .const import (
 from typing import Any
 
 _LOGGER = logging.getLogger(__name__)
-_LOGGER.debug("USGS Quakes options_flow.py loaded")  # Puedes dejarlo como debug
+_LOGGER.debug("USGS Quakes options_flow.py loaded")
 
 FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_TYPE_FRIENDLY_NAMES.items()}
 FRIENDLY_NAMES = list(FRIENDLY_NAME_TO_FEED_TYPE.keys())
@@ -30,7 +30,7 @@ FRIENDLY_NAMES = list(FRIENDLY_NAME_TO_FEED_TYPE.keys())
 class UsgsQuakesOptionsFlow(OptionsFlow):
     """Handle USGS Quakes options."""
 
-    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
+    def __init__(self, config_entry: ConfigEntry) -> None:
         self.config_entry = config_entry
 
     async def async_step_init(
