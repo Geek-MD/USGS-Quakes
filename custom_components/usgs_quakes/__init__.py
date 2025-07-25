@@ -6,15 +6,15 @@ import logging
 from homeassistant.config_entries import ConfigEntry, OptionsFlow
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers.typing import ConfigType
-from .options_flow import UsgsQuakesOptionsFlow
 
 from .const import (
     DOMAIN,
     PLATFORMS,
 )
 
-_LOGGER = logging.getLogger(__name__)
+from .options_flow import UsgsQuakesOptionsFlow
 
+_LOGGER = logging.getLogger(__name__)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the USGS Quakes integration (legacy config)."""
