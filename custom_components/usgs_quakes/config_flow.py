@@ -23,10 +23,9 @@ from .const import (
 FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_TYPE_FRIENDLY_NAMES.items()}
 FRIENDLY_NAMES = list(FRIENDLY_NAME_TO_FEED_TYPE.keys())
 
-
-class UsgsQuakesConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
+# class UsgsQuakesConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
+class UsgsQuakesConfigFlow(config_entries.ConfigFlow):
     """Handle a config flow for USGS Quakes."""
-
     VERSION = 1
 
     async def async_step_user(
