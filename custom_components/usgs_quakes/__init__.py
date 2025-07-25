@@ -3,9 +3,10 @@ from __future__ import annotations
 
 import logging
 
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import ConfigEntry, OptionsFlow
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers.typing import ConfigType
+from .options_flow import UsgsQuakesOptionsFlow
 
 from .const import (
     DOMAIN,
@@ -66,3 +67,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.data[DOMAIN].pop(entry.entry_id, None)
 
     return unload_ok
+
+def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
+    """Return the options flow handler for USGS Quakes."""
+    return UsgsQuakesOptionsFlow(config_entry)
