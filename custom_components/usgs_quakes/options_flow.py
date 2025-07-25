@@ -5,7 +5,7 @@ from __future__ import annotations
 import voluptuous as vol
 import logging
 
-from homeassistant import config_entries
+from homeassistant.config_entries import OptionsFlow, ConfigEntry
 from homeassistant.data_entry_flow import FlowResult
 
 from .const import (
@@ -27,7 +27,7 @@ FRIENDLY_NAME_TO_FEED_TYPE = {v: k for k, v in FEED_TYPE_FRIENDLY_NAMES.items()}
 FRIENDLY_NAMES = list(FRIENDLY_NAME_TO_FEED_TYPE.keys())
 
 
-class UsgsQuakesOptionsFlow(config_entries.OptionsFlow):
+class UsgsQuakesOptionsFlow(OptionsFlow):
     """Handle USGS Quakes options."""
 
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
